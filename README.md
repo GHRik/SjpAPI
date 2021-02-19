@@ -9,25 +9,51 @@ For example:
 - Print all of meaning of a word
  
 ## Tables of contents:
-[WIP]
+1. [ Do i need this API? ](#need)
+2. [ How it works? ](#how)
+3. [ Features ](#fea)
+4. [Used technology](#tech)
+5. [ Installation ](#instal)
+6. [ Using API ](#using)
+7. [ Examples using ](#examples)
+8. [ License ](#lic)
 
+<a name="need"/>
+## Do i need this API?
+### When you need this API:
+- Get as fresh as tropical fruit meaning of any word in dictionary ["słownik języka polskiego"](https://www.sjp.pl) 
 
+### When you dont need this API:
+- Only need check word is in dictionary or can be used in game like scrabble.
+In this case you can check any link from [there](https://sjp.pl/slownik/po.phtml)
+resolve your problem.
+
+<a name="how"/>
 ## How it works
 It is very simple. I locate all GET output from searching word is similary. For example:
 - Any name of word is in "h1" tag
 - Any info about word can be used game like scrabble is under word name.
 - Any meaning of word is under "znaczenie:"
-![Zamek_find](https://github.com/GHRik/SjpAPI/blob/main/examplesInCurl/curlZamekExample.PNG?raw=true)
-![Not_find_in_dictionary](https://github.com/GHRik/SjpAPI/blob/main/examplesInCurl/curlNotDetectedExample.PNG?raw=true)
-
-So to this dependencies i create schema:
-![schema](https://github.com/GHRik/SjpAPI/blob/main/schema/block_schema.PNG?raw=true)
 
 ```diff
 - According to this dependencies any small changes in sjp.pl site
 - might make SjpAPI unusable.
 + I will try to support if needed :D
 ```
+
+### Examples Http outputs
+
+So to this dependencies i create schema:
+![schema](https://github.com/GHRik/SjpAPI/blob/main/schema/block_schema.PNG?raw=true)
+
+
+Http output when i try to reach word: "zamek" https://sjp.pl/zamek
+![Zamek_find](https://github.com/GHRik/SjpAPI/blob/main/examplesInCurl/curlZamekExample.PNG?raw=true)
+Http output when i try to reach word who is not in dictionary:
+![Not_find_in_dictionary](https://github.com/GHRik/SjpAPI/blob/main/examplesInCurl/curlNotDetectedExample.PNG?raw=true)
+
+
+<a name="fea"/>
 ## Features
 
 - Print word in "ugly JSON format"
@@ -40,15 +66,7 @@ but **sjp team** working all the time with which word can be used in game like s
 it is not possible to get meaning of any word from site above.
 In this case this API was created.
 
-## Do i need this API?
-### When you need this API:
-- Get as fresh as tropical fruit meaning of any word in dictionary ["słownik języka polskiego"](https://www.sjp.pl) 
-
-### When you dont need this API:
-- Only need check word is in dictionary or can be used in game like scrabble.
-In this case you can check any link from [there](https://sjp.pl/slownik/po.phtml)
-resolve your problem.
-
+<a name="tech"/>
 ## Tech
 
 Used technology 
@@ -59,6 +77,7 @@ Used technology
 - [Słownik Języka Polskiego](https://sjp.pl) - Site which polish dictionary
 - [Apache StringUtils](http://commons.apache.org/proper/commons-lang/apidocs/org/apache/commons/lang3/StringUtils.html) - Used in a small string operations ;)  
 
+<a name="instal"/>
 ## Installation
 
  ##### [WIP]
@@ -67,6 +86,7 @@ Used technology
 ##### [WORKED BUT NOT TESTED]
 1. Add to your project folder with all src files.
 
+<a name="using"/>
 ## Using
 1. Create objet of SjpApi:
 ```
@@ -89,9 +109,10 @@ sjpApi.isWordExistInDictionary();
 ```
 sjpApi.getJSON();
 ```
-
+<a name="examples"/>
 ## Examples:
 [WIP] Any examples is in examples directory ;)
 
+<a name="lic"/>
 ## License
 Apache 
