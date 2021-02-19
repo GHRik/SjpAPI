@@ -2,6 +2,7 @@
 ## API to easy get word from www.sjp.pl 
 
 SjpAPI was created to get info of any word from [Słownik języka polskiego site](www.sjp.pl)
+
 For example:
 - Check is word in dictionary
 - Check if word can be used in game like scrabble
