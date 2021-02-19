@@ -83,7 +83,7 @@ Used technology
  ##### [WIP]
  1. Add as extended library to your java project and its all ^^
 
-##### [WORKED BUT NOT TESTED]
+##### [WORKED BUT NOT TESTED ENOUGH]
 1. Add to your project folder with all src files.
 
 <a name="using">.</a>
