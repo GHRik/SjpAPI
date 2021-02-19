@@ -15,8 +15,8 @@ public class SjpValidator {
 
     private Boolean isH1TagExist( String curlOutput ) {
        
-        boolean isOpenH1 = curlOutput.contains("<h1>");
-        boolean isCloesH1 = curlOutput.contains("</h1>");
-        return (isOpenH1 && isCloesH1);
+        boolean isOpenH1 = curlOutput.contains("<h1 ");
+        boolean isCloseH1 = curlOutput.contains("</h1>");
+        return (isOpenH1 && isCloseH1);
     }
 }

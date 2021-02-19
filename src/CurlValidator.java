@@ -4,7 +4,7 @@ public class CurlValidator {
 
     public Boolean isCurlValidate( String curlOutput ) {
 
-        if (isResponseOK( curlOutput ) == true) {
+        if (isResponseOK(curlOutput) && isBodySection(curlOutput)) {
             return true;
         }
         else {
@@ -14,11 +14,21 @@ public class CurlValidator {
 
     private Boolean isResponseOK( String curlOutput ) {
 
-        if (curlOutput.contains("200 OK")) {
+        if (curlOutput.startsWith("200")) {
             return true;
         }
         else {
             return false;
         }
+    }
+
+    private Boolean isBodySection( String curlOutput ) {
+        if (curlOutput.contains("<body>") && curlOutput.contains("</body>")){
+            return true;
+        }
+        else {
+
+        }
+        return false;
     }
 }

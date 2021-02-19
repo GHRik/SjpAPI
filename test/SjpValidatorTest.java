@@ -8,7 +8,7 @@ public class SjpValidatorTest extends TestCase {
 
 
     public void testIsCurlHaveH1Tag() {
-        String mockCurl = "<asd asd as das d <h1>dsa</h1>";
+        String mockCurl = "<asd asd as das d <h1 (any style options)>dsa</h1>";
         assertTrue(validator.isCurlWithWordValidate(mockCurl));
     }
     public void testIsCurlDONTHaveH1Tag() {

@@ -10,7 +10,7 @@ public class CurlWrapperTest extends TestCase {
 
     public void testIsNOTHeadInOutput() {
         String mockCurl = "<head>asdasdsadasd</head> <body>fgdfggfhtyjfhghfgd</body> asfdfhtyhhjdffsdc";
-        mockCurl = wrapper.deleteHeadFromOutput(mockCurl);
+        mockCurl = wrapper.wrappCurl(mockCurl);
         assertEquals(mockCurl,"fgdfggfhtyjfhghfgd");
 
     }
