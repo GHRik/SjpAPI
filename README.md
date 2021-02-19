@@ -13,7 +13,7 @@ For example:
 
 ## How it works
 It is very simple. I locate all GET output from searching word is similary. For example:
-- Any name of word is in "<h1>" tag
+- Any name of word is in "h1" tag
 - Any info about word can be used game like scrabble is under word name.
 - Any meaning of word is under "znaczenie:"
 [image with example1]
@@ -21,7 +21,7 @@ It is very simple. I locate all GET output from searching word is similary. For 
 [image with example3]
 
 So to this dependencies i create schema:
-[image with schema]
+![schema](https://github.com/GHRik/SjpAPI/blob/main/schema/block_schema.PNG?raw=true)
 
 ```diff
 - According to this dependencies any small changes in sjp.pl site
