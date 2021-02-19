@@ -18,7 +18,7 @@ For example:
 7. [ Examples using ](#examples)
 8. [ License ](#lic)
 
-<a name="need"/>
+<a name="need">.</a>
 ## Do i need this API?
 
 ### When you need this API:
@@ -29,7 +29,7 @@ For example:
 In this case you can check any link from [there](https://sjp.pl/slownik/po.phtml)
 resolve your problem.
 
-<a name="how"/>
+<a name="how">.</a>
 ## How it works
 It is very simple. I locate all GET output from searching word is similary. For example:
 - Any name of word is in "h1" tag
@@ -47,16 +47,13 @@ So to this dependencies i create schema:
 
 ### Examples Http outputs
 
-
-
-
 Http output when i try to reach word: "zamek" https://sjp.pl/zamek
 ![Zamek_find](https://github.com/GHRik/SjpAPI/blob/main/examplesInCurl/curlZamekExample.PNG?raw=true)
 Http output when i try to reach word who is not in dictionary:
 ![Not_find_in_dictionary](https://github.com/GHRik/SjpAPI/blob/main/examplesInCurl/curlNotDetectedExample.PNG?raw=true)
 
 
-<a name="fea"/>
+<a name="fea">.</a>
 ## Features
 
 - Print word in "ugly JSON format"
@@ -69,7 +66,7 @@ but **sjp team** working all the time with which word can be used in game like s
 it is not possible to get meaning of any word from site above.
 In this case this API was created.
 
-<a name="tech"/>
+<a name="tech">.</a>
 ## Tech
 
 Used technology 
@@ -80,7 +77,7 @@ Used technology
 - [Słownik Języka Polskiego](https://sjp.pl) - Site which polish dictionary
 - [Apache StringUtils](http://commons.apache.org/proper/commons-lang/apidocs/org/apache/commons/lang3/StringUtils.html) - Used in a small string operations ;)  
 
-<a name="instal"/>
+<a name="instal">.</a>
 ## Installation
 
  ##### [WIP]
@@ -89,7 +86,7 @@ Used technology
 ##### [WORKED BUT NOT TESTED]
 1. Add to your project folder with all src files.
 
-<a name="using"/>
+<a name="using">.</a>
 ## Using
 1. Create objet of SjpApi:
 ```
@@ -112,10 +109,10 @@ sjpApi.isWordExistInDictionary();
 ```
 sjpApi.getJSON();
 ```
-<a name="examples"/>
+<a name="examples">.</a>
 ## Examples:
 [WIP] Any examples is in examples directory ;)
 
-<a name="lic"/>
+<a name="lic">.</a>
 ## License
 Apache 
