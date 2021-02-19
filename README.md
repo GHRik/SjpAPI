@@ -97,6 +97,7 @@ SjpAPI sjpApi = new SjpAPI();
 sjpApi.getWord("owoc");
 ```
 3. Now you are free to used:
+
 3.1 Check word can be used in scrabble:
 ```
 sjpApi.canBeUsedInScrabble();
