@@ -1,0 +1,9 @@
+2021-02-20 00:39:34.536 23239-23239/scrabble.helper I/Output: "zamek"
+    {"name:""zamek"
+    "canBeUsed:""true"
+    "descriprion:""1. urządzenie do zamykania i otwierania drzwi, walizek, sejfów itp.;<br />2. suwak, ekler;<br />3. urządzenie będące elementem broni palnej, służące do zaryglowania komory nabojowej"
+    "name:""zamek"
+    "canBeUsed:""true"
+    "descriprion:""średniowieczna budowla obronna; częstokroć miejsce pobytu króla i jego dworu"
+    
+    }

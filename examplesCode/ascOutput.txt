@@ -1,0 +1,6 @@
+2021-02-20 00:40:37.682 23363-23363/scrabble.helper I/Output: "-1"
+    {"name:""-1"
+    "canBeUsed:""false"
+    "descriprion:""-1"
+    
+    }
