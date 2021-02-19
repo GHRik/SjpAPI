@@ -20,6 +20,7 @@ For example:
 
 <a name="need"/>
 ## Do i need this API?
+
 ### When you need this API:
 - Get as fresh as tropical fruit meaning of any word in dictionary ["słownik języka polskiego"](https://www.sjp.pl) 
 
@@ -35,6 +36,9 @@ It is very simple. I locate all GET output from searching word is similary. For 
 - Any info about word can be used game like scrabble is under word name.
 - Any meaning of word is under "znaczenie:"
 
+So to this dependencies i create schema:
+![schema](https://github.com/GHRik/SjpAPI/blob/main/schema/block_schema.PNG?raw=true)
+
 ```diff
 - According to this dependencies any small changes in sjp.pl site
 - might make SjpAPI unusable.
@@ -43,8 +47,7 @@ It is very simple. I locate all GET output from searching word is similary. For 
 
 ### Examples Http outputs
 
-So to this dependencies i create schema:
-![schema](https://github.com/GHRik/SjpAPI/blob/main/schema/block_schema.PNG?raw=true)
+
 
 
 Http output when i try to reach word: "zamek" https://sjp.pl/zamek
