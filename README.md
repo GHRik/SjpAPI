@@ -1,7 +1,7 @@
 # SjpAPI
 ## API to easy get word from www.sjp.pl 
 
-SjpAPI was created to get info of any word from [Słownik języka polskiego site](www.sjp.pl)
+SjpAPI was created to get info ***ONLINE*** of any word from [Słownik języka polskiego site](www.sjp.pl)
 
 For example:
 - Check is word in dictionary
@@ -22,7 +22,7 @@ For example:
 ## Do i need this API?
 
 ### When you need this API:
-- Get as fresh as tropical fruit meaning of any word in dictionary ["słownik języka polskiego"](https://www.sjp.pl) 
+- Get "as fresh as tropical fruit"(***ONLINE***) meaning of any word in dictionary ["słownik języka polskiego"](https://www.sjp.pl) 
 
 ### When you dont need this API:
 - Only need check word is in dictionary or can be used in game like scrabble.
@@ -56,8 +56,7 @@ Http output when i try to reach word who is not in dictionary:
 <a name="fea">.</a>
 ## Features
 
-- Print word in "ugly JSON format"
-- [WIP] Print word in JSON format
+- WIP Print word in JSON format
 - [WIP] Use like .jar library
 
 SjpAPI is a library which "check" word online. 
@@ -80,39 +79,40 @@ Used technology
 <a name="instal">.</a>
 ## Installation
 
- ##### [WIP]
+##### [WIP]
  1. Add as extended library to your java project and its all ^^
 
-##### [WORKED BUT NOT TESTED ENOUGH]
+##### [WORKED]
 1. Add to your project folder with all src files.
 
 <a name="using">.</a>
 ## Using
-1. Create objet of SjpApi:
+1. Example of word "owoc":
 ```
-SjpAPI sjpApi = new SjpAPI();
+String json = SjpAPI.getWord("owoc");
 ```
-2. Get a word you need to get:
-```
-sjpApi.getWord("owoc");
-```
-3. Now you are free to used:
 
-3.1 Check word can be used in scrabble:
+Output from example:
 ```
-sjpApi.canBeUsedInScrabble();
+{"name":"owoc"}
+{"canBeUsed":true}
+{"meaning":"1. występujący u roślin okrytozalążkowych wytwór zalążni słupka kwiatowego;\n2. rezultat działań, wynik, skutek;\n3. potocznie, zbiorowo: płody drzew oraz krzewów owocowych"}
 ```
-3.2 Check word exist in dictionary
-```
-sjpApi.isWordExistInDictionary();
-```
-3.3 Or get any info with meaningOf
-```
-sjpApi.getJSON();
-```
+
 <a name="examples">.</a>
 ## Examples:
-[WIP] Any examples is in examples directory ;)
+To easy ilustrate i created easy [android app](https://github.com/GHRik/SjpAPI/blob/main/examplesCode/MainActivity.java), so you are free to test it:
+
+When you input empty string:
+![Empty_string](https://github.com/GHRik/SjpAPI/blob/main/examplesCode/EmptyStringExample.PNG?raw=true)
+
+Input: "głośnik" and "zamek":
+![Glosniik_example](https://github.com/GHRik/SjpAPI/blob/main/examplesCode/GlosnikiExample.PNG?raw=true)
+![Zamek_example](https://github.com/GHRik/SjpAPI/blob/main/examplesCode/ZamekExample.PNG?raw=true)
+
+Not found in dictionary:
+![Not_find_in_dictionary_Example](https://github.com/GHRik/SjpAPI/blob/main/examplesCode/NotFoundInDictionaryExample.PNG?raw=true)
+
 
 <a name="lic">.</a>
 ## License
