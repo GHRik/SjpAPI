@@ -107,8 +107,7 @@ When you input empty string:
 ![Empty_string](https://github.com/GHRik/SjpAPI/blob/main/examplesCode/EmptyStringExample.PNG?raw=true)
 
 Input: "głośnik" and "zamek":
-![Glosniik_example](https://github.com/GHRik/SjpAPI/blob/main/examplesCode/GlosnikiExample.PNG?raw=true)
-![Zamek_example](https://github.com/GHRik/SjpAPI/blob/main/examplesCode/ZamekExample.PNG?raw=true)
+![Glosniik_example](https://github.com/GHRik/SjpAPI/blob/main/examplesCode/GlosnikiExample.PNG?raw=true) ![Zamek_example](https://github.com/GHRik/SjpAPI/blob/main/examplesCode/ZamekExample.PNG?raw=true)
 
 Not found in dictionary:
 ![Not_find_in_dictionary_Example](https://github.com/GHRik/SjpAPI/blob/main/examplesCode/NotFoundInDictionaryExample.PNG?raw=true)
