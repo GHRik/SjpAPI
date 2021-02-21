@@ -103,13 +103,13 @@ Output from example:
 ## Examples:
 To easy ilustrate i created easy [android app](https://github.com/GHRik/SjpAPI/blob/main/examplesCode/MainActivity.java), so you are free to test it:
 
-#####When you input empty string:
+##### When you input empty string:
 ![Empty_string](https://github.com/GHRik/SjpAPI/blob/main/examplesCode/EmptyStringExample.PNG?raw=true)
 
-#####Input: "zamek":
+##### Input: "zamek":
 ![Zamek_example](https://github.com/GHRik/SjpAPI/blob/main/examplesCode/ZamekExample.PNG?raw=true)
 
-#####Not found in dictionary:
+##### Not found in dictionary:
 ![Not_find_in_dictionary_Example](https://github.com/GHRik/SjpAPI/blob/main/examplesCode/NotFoundInDictionaryExample.PNG?raw=true)
 
 
