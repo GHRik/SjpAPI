@@ -1,6 +1,8 @@
 package sjpAPI;
 
-import java.util.List;
+import org.json.JSONException;
+
+import java.util.ArrayList;
 
 
 
@@ -9,14 +11,14 @@ public class SjpHelper {
     private static SjpValidator validator = new SjpValidator();
     private static SjpWrapper wrapper = new SjpWrapper();
 
-    public static List<MyWord> translateFromCurlToMyWord( String curl ) {
+    public static String translateFromCurlToJSON(String curl ) throws JSONException {
 
-        List<MyWord> words = null;
+        String json = "EMPTY";
 
         if (validator.isCurlWithWordValidate(curl)) {
-            words = wrapper.getWrapped(curl);
+            json = wrapper.getWrapped(curl);
         }
-        return words;
+        return json;
     }
 
 

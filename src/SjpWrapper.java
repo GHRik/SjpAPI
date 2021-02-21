@@ -1,5 +1,8 @@
 package sjpAPI;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -7,24 +10,24 @@ import java.util.regex.Pattern;
 
 public class SjpWrapper {
 
-    public List<MyWord> getWrapped (String curlOutput) {
+    public String getWrapped (String curlOutput) throws JSONException {
         List<List<String>> wordsFromCurlOutput = regexForInfo(curlOutput);
-        return translateArrayToMyWord(wordsFromCurlOutput);
+        return translateArrayToJSON(wordsFromCurlOutput);
 
     }
 
     private List<List<String>> regexForInfo (String curlOutput) {
 
-        List<List<String>> wrappedCurl = new ArrayList<List<String>>();
+        List<List<String>> wrappedCurl = new ArrayList<>();
         if (isInDictionary(curlOutput) == true) {
 
             final String regex = "<h1[^>]*>(.+?)<\\/h1>.<p[^>]*>(.+?)<.+?(?=.*)znaczenie.+?<p[^>]*>(.+?)<\\/p>";
             final Pattern pattern = Pattern.compile(regex, Pattern.MULTILINE);
             final Matcher matcher = pattern.matcher(curlOutput);
 
-            wrappedCurl = new ArrayList<List<String>>();
+            wrappedCurl = new ArrayList<>();
             while (matcher.find()) {
-                List<String> definitionOfWord = new ArrayList<String>();
+                List<String> definitionOfWord = new ArrayList<>();
                 for (int j = 1; j <= matcher.groupCount(); j++) {
                     definitionOfWord.add(matcher.group(j));
                 }
@@ -44,24 +47,26 @@ public class SjpWrapper {
         }
     }
 
-    private List<MyWord> translateArrayToMyWord( List<List<String>> wordsFromCurlOutput ) {
-        List<MyWord> allWrappedWords = new ArrayList<>();
+    private String translateArrayToJSON(List<List<String>> wordsFromCurlOutput ) throws JSONException {
+        String allWrappedWord = "";
         if ( wordsFromCurlOutput.isEmpty() == true ) {
-            MyWord emptyWord = new MyWord("-1",false,"-1");
+            String emptyWord = new JSONObject().put("name", "-1").toString();
+            emptyWord +=  new JSONObject().put("canBeUsed", false).toString();
+            emptyWord +=  new JSONObject().put("meaning", "-1").toString();
 
-            allWrappedWords.add(emptyWord);
+            allWrappedWord = emptyWord;
         }
         else
         {
+            String newWord = new JSONObject().put("name",wordsFromCurlOutput.get(0).get(0)).toString();
             for( int i = 0; i < wordsFromCurlOutput.size(); i++){
-                String name = wordsFromCurlOutput.get(i).get(0);
-                Boolean canBeUsed = TranslateCanBeUsed(wordsFromCurlOutput.get(i).get(1));
-                String description = changeBrTagOnNewLine(wordsFromCurlOutput.get(i).get(2));
-                MyWord newWord = new MyWord(name,canBeUsed,description);
-                allWrappedWords.add(newWord);
+                newWord += new JSONObject().put("canBeUsed",TranslateCanBeUsed(wordsFromCurlOutput.get(i).get(1))).toString();
+                newWord += new JSONObject().put("meaning", changeBrTagOnNewLine(wordsFromCurlOutput.get(i).get(2))).toString();
             }
+            allWrappedWord = newWord;
+
         }
-        return allWrappedWords;
+        return allWrappedWord;
     }
 
     private Boolean TranslateCanBeUsed(String oneParamOfWordFromCurl){
@@ -75,7 +80,7 @@ public class SjpWrapper {
     }
 
     private String changeBrTagOnNewLine(String descritption ) {
-        descritption.replaceAll("<br>|</br>","\n");
+        descritption = descritption.replaceAll("(?i)<br */?>","\n");
         return descritption;
     }
 }

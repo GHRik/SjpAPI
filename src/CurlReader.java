@@ -12,15 +12,44 @@ import java.net.URL;
 
 public class CurlReader {
 
+    private String readed = "";
+
     public String getCurlOutput(String https) throws IOException {
-        return this.read(https);
+
+
+        Thread thread = new Thread(new Runnable() {
+                        @Override
+            public void run() {
+                try  {
+                    try {
+                        readed = read(https);
+                    } catch (MalformedURLException e) {
+                        e.printStackTrace();
+                    }
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        thread.start();
+        try {
+            thread.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return readed;
     }
+
+
+
 
     private String read(String https) throws IOException {
 
         String curlOutput = "";
         HttpURLConnection urlConnection = null;
         URL url = new URL(https);
+
         urlConnection = (HttpURLConnection) url.openConnection();
         urlConnection.setRequestMethod("GET");
         urlConnection.connect();
