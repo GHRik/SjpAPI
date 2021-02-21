@@ -56,7 +56,7 @@ Http output when i try to reach word who is not in dictionary:
 <a name="fea">.</a>
 ## Features
 
-- WIP Print word in JSON format
+- Print word in JSON format
 - [WIP] Use like .jar library
 
 SjpAPI is a library which "check" word online. 
