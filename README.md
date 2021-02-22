@@ -1,4 +1,4 @@
-# SjpAPI
+# SjpAPI - Android version
 ## API to easy get word from www.sjp.pl 
 
 SjpAPI was created to get info ***ONLINE*** of any word from [Słownik języka polskiego site](www.sjp.pl)
@@ -79,15 +79,20 @@ Used technology
 <a name="instal">.</a>
 ## Installation
 
-##### [WIP]
- 1. Add as extended library to your java project and its all ^^
-
-##### [WORKED]
-1. Add to your project folder with all src files.
+ 1. Add as extended library to your java project and import:
+ ```
+ import com.sjp.sjpapi.SjpAPI;
+ ```
 
 <a name="using">.</a>
 ## Using
-1. Example of word "owoc":
+
+1. Import
+```
+import com.sjp.sjpapi.SjpAPI;
+```
+
+2. Example of word "owoc":
 ```
 String json = SjpAPI.getWord("owoc");
 ```
