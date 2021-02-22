@@ -57,7 +57,7 @@ Http output when i try to reach word who is not in dictionary:
 ## Features
 
 - Print word in JSON format
-- [WIP] Use like .jar library
+- Use like .jar library
 
 SjpAPI is a library which "check" word online. 
 I know all necesarry word can be found [there](https://sjp.pl/slownik/po.phtml),
@@ -79,7 +79,7 @@ Used technology
 <a name="instal">.</a>
 ## Installation
 
- 1. Add as extended library to your java project and import:
+ 1. Add [sjpApi.jar](https://github.com/GHRik/SjpAPI/blob/main/library/SjpApi.jar) as extended library to your java project and import:
  ```
  import com.sjp.sjpapi.SjpAPI;
  ```
