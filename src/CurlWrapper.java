@@ -1,7 +1,5 @@
 package com.sjp.sjpapi;
 
-import org.apache.commons.lang3.StringUtils;
-
 public class CurlWrapper {
 
     public String wrappCurl(String curlOutput) {
@@ -11,7 +9,11 @@ public class CurlWrapper {
     public String deleteHeadFromOutput(String curlOutput) {
 
         String outputWithoutHeadSection = curlOutput;
-        outputWithoutHeadSection = StringUtils.substringBetween(outputWithoutHeadSection, "<body>", "</body>");
+
+        String bodySectionStart = "<body>";
+        int startBodySection = outputWithoutHeadSection.indexOf("<body>") + bodySectionStart.length() ;
+        int finishBodySection = outputWithoutHeadSection.indexOf("</body>");
+        outputWithoutHeadSection = outputWithoutHeadSection.substring(startBodySection,finishBodySection);
 
         return outputWithoutHeadSection;
     }
