@@ -1,4 +1,4 @@
-package sjpAPI;
+package com.sjp.sjpapi;
 
 import android.content.res.Configuration;
 

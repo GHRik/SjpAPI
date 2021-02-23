@@ -1,4 +1,4 @@
-package sjpAPI;
+package com.sjp.sjpapi;
 
 import org.apache.commons.lang3.StringUtils;
 

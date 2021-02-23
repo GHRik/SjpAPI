@@ -1,4 +1,4 @@
-package sjpAPI;
+package com.sjp.sjpapi;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -49,20 +49,25 @@ public class SjpWrapper {
 
     private String translateArrayToJSON(List<List<String>> wordsFromCurlOutput ) throws JSONException {
         String allWrappedWord = "";
+        JSONObject jsonObject = new JSONObject();
         if ( wordsFromCurlOutput.isEmpty() == true ) {
-            String emptyWord = new JSONObject().put("name", "-1").toString();
-            emptyWord +=  new JSONObject().put("canBeUsed", false).toString();
-            emptyWord +=  new JSONObject().put("meaning", "-1").toString();
+            jsonObject.put("name", "-1");
+            jsonObject.put("count","-1");
+            jsonObject.put("canBeUsed", false);
+            jsonObject.put("meaning", "-1");
 
+            String emptyWord = jsonObject.toString();
             allWrappedWord = emptyWord;
         }
         else
         {
-            String newWord = new JSONObject().put("name",wordsFromCurlOutput.get(0).get(0)).toString();
+            jsonObject.put("name",wordsFromCurlOutput.get(0).get(0));
+            jsonObject.put("count",wordsFromCurlOutput.size());
             for( int i = 0; i < wordsFromCurlOutput.size(); i++){
-                newWord += new JSONObject().put("canBeUsed",TranslateCanBeUsed(wordsFromCurlOutput.get(i).get(1))).toString();
-                newWord += new JSONObject().put("meaning", changeBrTagOnNewLine(wordsFromCurlOutput.get(i).get(2))).toString();
+                jsonObject.put("canBeUsed"+"["+i+"]",TranslateCanBeUsed(wordsFromCurlOutput.get(i).get(1)));
+                jsonObject.put("meaning"+"["+i+"]", changeBrTagOnNewLine(wordsFromCurlOutput.get(i).get(2)));
             }
+            String newWord = jsonObject.toString();
             allWrappedWord = newWord;
 
         }
@@ -83,4 +88,5 @@ public class SjpWrapper {
         descritption = descritption.replaceAll("(?i)<br */?>","\n");
         return descritption;
     }
+
 }
