@@ -65,7 +65,7 @@ public class SjpWrapper {
             jsonObject.put("count",wordsFromCurlOutput.size());
             for( int i = 0; i < wordsFromCurlOutput.size(); i++){
                 jsonObject.put("canBeUsed"+"["+i+"]",TranslateCanBeUsed(wordsFromCurlOutput.get(i).get(1)));
-                jsonObject.put("meaning"+"["+i+"]", changeBrTagOnNewLine(wordsFromCurlOutput.get(i).get(2)));
+                jsonObject.put("meaning"+"["+i+"]", wrappedDescription(wordsFromCurlOutput.get(i).get(2)));
             }
             String newWord = jsonObject.toString();
             allWrappedWord = newWord;
@@ -84,9 +84,24 @@ public class SjpWrapper {
 
     }
 
+    private String wrappedDescription( String description ) {
+        String desc = description;
+        desc = changeBrTagOnNewLine(desc);
+        desc = changeQuoteOnQuoteMark(desc);
+
+        return desc;
+    }
+
     private String changeBrTagOnNewLine(String descritption ) {
         descritption = descritption.replaceAll("(?i)<br */?>","\n");
         return descritption;
+    }
+
+    private String changeQuoteOnQuoteMark( String description ){
+
+        String desc = description;
+        desc = desc.replaceAll("(?i)&quot;","'");
+        return desc;
     }
 
 }
