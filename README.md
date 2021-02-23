@@ -99,16 +99,20 @@ String json = SjpAPI.getWord("owoc");
 
 Output from example:
 ```
-{"name":"owoc"}
-{"canBeUsed":true}
-{"meaning":"1. występujący u roślin okrytozalążkowych wytwór zalążni słupka kwiatowego;\n2. rezultat działań, wynik, skutek;\n3. potocznie, zbiorowo: płody drzew oraz krzewów owocowych"}
+{"name":"owoc","count":1,"canBeUsed[0]":true,"meaning[0]":"1. występujący u roślin okrytozalążkowych wytwór zalążni słupka kwiatowego;\n2. rezultat działań, wynik, skutek;\n3. potocznie, zbiorowo: płody drzew oraz krzewów owocowych"}
+
 ```
+##### Means of json field:
+- Name: Name of searching word
+- Count: How many meaning word have
+- canBeUsed[index]: this word as meaning[index] can be used in game like scrabble
+- meaning[index]: one of meaning of word
 
 <a name="examples">.</a>
 ## Examples:
-To easy ilustrate i created easy [android app](https://github.com/GHRik/SjpAPI/blob/main/examplesCode/MainActivity.java), so you are free to test it:
+To easy ilustrate i created easy [android app](https://github.com/GHRik/SjpAPI/blob/main/examplesCode/), so you are free to test it:
 
-##### When you input empty string:
+##### When you input empty string OR is problem with connect to site(no internet connection):
 ![Empty_string](https://github.com/GHRik/SjpAPI/blob/main/examplesCode/EmptyStringExample.PNG?raw=true)
 
 ##### Input: "zamek":
