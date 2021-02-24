@@ -87,7 +87,7 @@ public class SjpWrapper {
     private String wrappedDescription( String description ) {
         String desc = description;
         desc = changeBrTagOnNewLine(desc);
-        desc = changeQuoteOnQuoteMark(desc);
+        desc = StringUtils.unescapeHTML(desc,0);
 
         return desc;
     }
@@ -95,13 +95,6 @@ public class SjpWrapper {
     private String changeBrTagOnNewLine(String descritption ) {
         descritption = descritption.replaceAll("(?i)<br */?>","\n");
         return descritption;
-    }
-
-    private String changeQuoteOnQuoteMark( String description ){
-
-        String desc = description;
-        desc = desc.replaceAll("(?i)&quot;","'");
-        return desc;
     }
 
 }

@@ -11,9 +11,8 @@ public class CurlWrapper {
         String outputWithoutHeadSection = curlOutput;
 
         String bodySectionStart = "<body>";
-        int startBodySection = outputWithoutHeadSection.indexOf("<body>") + bodySectionStart.length() ;
-        int finishBodySection = outputWithoutHeadSection.indexOf("</body>");
-        outputWithoutHeadSection = outputWithoutHeadSection.substring(startBodySection,finishBodySection);
+        String bodySectionFinis = "</body>";
+        outputWithoutHeadSection = StringUtils.substringBettwen(outputWithoutHeadSection,bodySectionStart,bodySectionFinis);
 
         return outputWithoutHeadSection;
     }
