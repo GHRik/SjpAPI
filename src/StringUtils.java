@@ -1,6 +1,8 @@
 package com.sjp.sjpapi;
 
 import java.util.HashMap;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class StringUtils {
 
@@ -117,5 +119,12 @@ public class StringUtils {
             }
 
         return htmlWithGoodCoding;
+    }
+
+    public static boolean hasSpecyficHTMLTags(String text){
+        String HTML_PATTERN = "<a[^>]*>.+?<\\/a>|<span[^>]*.+?<\\/span>|<p[^>]*.+?<\\/p>";
+        Pattern pattern = Pattern.compile(HTML_PATTERN);
+        Matcher matcher = pattern.matcher(text);
+        return matcher.find();
     }
 }

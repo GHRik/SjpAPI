@@ -86,10 +86,25 @@ public class SjpWrapper {
 
     }
 
+
+    private boolean isDescriptionGoodFormat(String description) {
+        if (StringUtils.hasSpecyficHTMLTags(description) || description.contentEquals( "KOMENTARZE:")){
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+
     private String wrappedDescription( String description ) {
         String desc = description;
-        desc = changeBrTagOnNewLine(desc);
-        desc = StringUtils.unescapeHTML(desc,0);
+        if ( isDescriptionGoodFormat(desc) == false ){
+            desc = "BAD FORMAT";
+        }
+        else {
+            desc = changeBrTagOnNewLine(desc);
+            desc = StringUtils.unescapeHTML(desc, 0);
+        }
 
         return desc;
     }
