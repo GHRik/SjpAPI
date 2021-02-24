@@ -4,48 +4,87 @@ import java.util.HashMap;
 
 public class StringUtils {
 
-    private static HashMap<String,String> htmlEntities;
+    private static HashMap<String, String> htmlEntities;
+
     static {
-        htmlEntities = new HashMap<String,String>();
-        htmlEntities.put("&lt;","<")    ; htmlEntities.put("&gt;",">");
-        htmlEntities.put("&amp;","&")   ; htmlEntities.put("&quot;","'");
-        htmlEntities.put("&agrave;","à"); htmlEntities.put("&Agrave;","À");
-        htmlEntities.put("&acirc;","â") ; htmlEntities.put("&auml;","ä");
-        htmlEntities.put("&Auml;","Ä")  ; htmlEntities.put("&Acirc;","Â");
-        htmlEntities.put("&aring;","å") ; htmlEntities.put("&Aring;","Å");
-        htmlEntities.put("&aelig;","æ") ; htmlEntities.put("&AElig;","Æ" );
-        htmlEntities.put("&ccedil;","ç"); htmlEntities.put("&Ccedil;","Ç");
-        htmlEntities.put("&eacute;","é"); htmlEntities.put("&Eacute;","É" );
-        htmlEntities.put("&egrave;","è"); htmlEntities.put("&Egrave;","È");
-        htmlEntities.put("&ecirc;","ê") ; htmlEntities.put("&Ecirc;","Ê");
-        htmlEntities.put("&euml;","ë")  ; htmlEntities.put("&Euml;","Ë");
-        htmlEntities.put("&iuml;","ï")  ; htmlEntities.put("&Iuml;","Ï");
-        htmlEntities.put("&ocirc;","ô") ; htmlEntities.put("&Ocirc;","Ô");
-        htmlEntities.put("&ouml;","ö")  ; htmlEntities.put("&Ouml;","Ö");
-        htmlEntities.put("&oslash;","ø") ; htmlEntities.put("&Oslash;","Ø");
-        htmlEntities.put("&szlig;","ß") ; htmlEntities.put("&ugrave;","ù");
-        htmlEntities.put("&Ugrave;","Ù"); htmlEntities.put("&ucirc;","û");
-        htmlEntities.put("&Ucirc;","Û") ; htmlEntities.put("&uuml;","ü");
-        htmlEntities.put("&Uuml;","Ü")  ; htmlEntities.put("&nbsp;"," ");
-        htmlEntities.put("&copy;","\u00a9");
-        htmlEntities.put("&reg;","\u00ae");
-        htmlEntities.put("&euro;","\u20a0");
+        htmlEntities = new HashMap<String, String>();
+        htmlEntities.put("&lt;", "<");
+        htmlEntities.put("&gt;", ">");
+        htmlEntities.put("&amp;", "&");
+        htmlEntities.put("&quot;", "'");
+        htmlEntities.put("&agrave;", "à");
+        htmlEntities.put("&Agrave;", "À");
+        htmlEntities.put("&acirc;", "â");
+        htmlEntities.put("&auml;", "ä");
+        htmlEntities.put("&Auml;", "Ä");
+        htmlEntities.put("&Acirc;", "Â");
+        htmlEntities.put("&aring;", "å");
+        htmlEntities.put("&Aring;", "Å");
+        htmlEntities.put("&aelig;", "æ");
+        htmlEntities.put("&AElig;", "Æ");
+        htmlEntities.put("&ccedil;", "ç");
+        htmlEntities.put("&Ccedil;", "Ç");
+        htmlEntities.put("&eacute;", "é");
+        htmlEntities.put("&Eacute;", "É");
+        htmlEntities.put("&egrave;", "è");
+        htmlEntities.put("&Egrave;", "È");
+        htmlEntities.put("&ecirc;", "ê");
+        htmlEntities.put("&Ecirc;", "Ê");
+        htmlEntities.put("&euml;", "ë");
+        htmlEntities.put("&Euml;", "Ë");
+        htmlEntities.put("&iuml;", "ï");
+        htmlEntities.put("&Iuml;", "Ï");
+        htmlEntities.put("&ocirc;", "ô");
+        htmlEntities.put("&Ocirc;", "Ô");
+        htmlEntities.put("&ouml;", "ö");
+        htmlEntities.put("&Ouml;", "Ö");
+        htmlEntities.put("&oslash;", "ø");
+        htmlEntities.put("&Oslash;", "Ø");
+        htmlEntities.put("&szlig;", "ß");
+        htmlEntities.put("&ugrave;", "ù");
+        htmlEntities.put("&Ugrave;", "Ù");
+        htmlEntities.put("&ucirc;", "û");
+        htmlEntities.put("&Ucirc;", "Û");
+        htmlEntities.put("&uuml;", "ü");
+        htmlEntities.put("&Uuml;", "Ü");
+        htmlEntities.put("&nbsp;", " ");
+        htmlEntities.put("&copy;", "\u00a9");
+        htmlEntities.put("&reg;", "\u00ae");
+        htmlEntities.put("&euro;", "\u20a0");
+    }
+
+    private static HashMap<String, String> htmlPolishChar;
+
+    static {
+        htmlPolishChar = new HashMap<String, String>();
+        //ąęćóśłżźń
+        htmlPolishChar.put("%C4%87", "ć");
+        htmlPolishChar.put("%C3%B3", "ó");
+        htmlPolishChar.put("%C5%84", "ń");
+        htmlPolishChar.put("%C5%81", "ł");
+        htmlPolishChar.put("%C5%82", "ł");
+        htmlPolishChar.put("%C4%85", "ą");
+        htmlPolishChar.put("%C4%99", "ę");
+        htmlPolishChar.put("%C5%BC", "ż");
+        htmlPolishChar.put("%C5%BA", "ź");
+        htmlPolishChar.put("%C5%9B", "ś");
+
     }
 
 
     // Function from
     // https://www.rgagnon.com/javadetails/java-0307.html
-    public static final String unescapeHTML(String source, int start){
+    public static final String unescapeHTML(String source, int start) {
         int startOfHtmlSpecialCharCombination, closeOfHtmlSpecialCharCombination;
 
         startOfHtmlSpecialCharCombination = source.indexOf("&", start);
         if (startOfHtmlSpecialCharCombination > -1) {
-            closeOfHtmlSpecialCharCombination = source.indexOf(";" ,startOfHtmlSpecialCharCombination);
+            closeOfHtmlSpecialCharCombination = source.indexOf(";", startOfHtmlSpecialCharCombination);
             if (closeOfHtmlSpecialCharCombination > startOfHtmlSpecialCharCombination) {
-                String entityToLookFor = source.substring(startOfHtmlSpecialCharCombination , closeOfHtmlSpecialCharCombination + 1);
-                String value = (String)htmlEntities.get(entityToLookFor);
+                String entityToLookFor = source.substring(startOfHtmlSpecialCharCombination, closeOfHtmlSpecialCharCombination + 1);
+                String value = (String) htmlEntities.get(entityToLookFor);
                 if (value != null) {
-                    source = new StringBuffer().append(source.substring(0 , startOfHtmlSpecialCharCombination))
+                    source = new StringBuffer().append(source.substring(0, startOfHtmlSpecialCharCombination))
                             .append(value)
                             .append(source.substring(closeOfHtmlSpecialCharCombination + 1))
                             .toString();
@@ -56,18 +95,27 @@ public class StringUtils {
         return source;
     }
 
-    public static final String substringBettwen( String substringString ,String openingSequence, String closingSequence ) {
+    public static final String substringBettwen(String substringString, String openingSequence, String closingSequence) {
 
-        int startSection = substringString.indexOf(openingSequence) + openingSequence.length() ;
+        int startSection = substringString.indexOf(openingSequence) + openingSequence.length();
         int finisSection = substringString.indexOf("</body>");
-        substringString = substringString.substring(startSection,finisSection);
+        substringString = substringString.substring(startSection, finisSection);
 
         return substringString;
 
     }
 
-    public static final String htmlToPolishLetter ( String htmlWithBadCoding ) {
-        return htmlWithBadCoding;
-    }
+    public static final String htmlToPolishLetter(String htmlWithBadCoding) {
 
+        String htmlWithGoodCoding = "";
+
+            for (String key : htmlPolishChar.keySet()) {
+                if (htmlWithBadCoding.contains(key)) {
+                    htmlWithGoodCoding = htmlWithBadCoding.replaceAll(key, htmlPolishChar.get(key));
+                    htmlWithBadCoding = htmlWithGoodCoding;
+                }
+            }
+
+        return htmlWithGoodCoding;
+    }
 }
