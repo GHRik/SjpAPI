@@ -34,12 +34,8 @@ public class MainActivity extends AppCompatActivity {
                 String mean = sjpApi.getWord(nameOfWord.getText().toString());
                 meaningOfWordText.setText(mean);
                 Log.i("curl",mean);
-
                 JSONObject jsonObject = new JSONObject(mean);
-
-                meaningOfWordText.setText(jsonObject.get("name").toString());
-                String canBeUsed = jsonObject.get("canBeUsed[1]").toString();
-                Log.i("used", canBeUsed);
+                meaningOfWordText.setText(mean);
 
 
             } catch (IOException e) {

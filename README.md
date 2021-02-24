@@ -99,14 +99,18 @@ String json = SjpAPI.getWord("owoc");
 
 Output from example:
 ```
-{"name":"owoc","count":1,"canBeUsed[0]":true,"meaning[0]":"1. występujący u roślin okrytozalążkowych wytwór zalążni słupka kwiatowego;\n2. rezultat działań, wynik, skutek;\n3. potocznie, zbiorowo: płody drzew oraz krzewów owocowych"}
-
+{"name":"owoc","count":1,"canBeUsed[0]":true,"variant[0]":"owoc","meaning[0]":"1. występujący u roślin okrytozalążkowych wytwór zalążni słupka kwiatowego;\n2. rezultat działań, wynik, skutek;\n3. potocznie, zbiorowo: płody drzew oraz krzewów owocowych"}
 ```
 ##### Means of json field:
 - Name: Name of searching word
 - Count: How many meaning word have
 - canBeUsed[index]: this word as meaning[index] can be used in game like scrabble
+- viariant[index]: this field is point from which word searching word is created. For example if you searching for: "równe" , one of the variant is "równa" or "równy" [heck it out](sjp.pl/równe)
 - meaning[index]: one of meaning of word
+
+Sometimes a sjp.pl site is in ***bad format*** and it is unavailable to read "meaning" of word. [Look at this issue](https://github.com/GHRik/SjpAPI/issues/6)
+So in this case a output from "meaning[index]" field is "BAD FORMAT" , you can see in example below.
+
 
 <a name="examples">.</a>
 ## Examples:
@@ -120,6 +124,10 @@ To easy ilustrate i created easy [android app](https://github.com/GHRik/SjpAPI/b
 
 ##### Not found in dictionary:
 ![Not_find_in_dictionary_Example](https://github.com/GHRik/SjpAPI/blob/main/examplesCode/NotFoundInDictionaryExample.PNG?raw=true)
+
+
+##### BAD FORMATING site:
+![Bad_Format](https://github.com/GHRik/SjpAPI/blob/main/examplesCode/BadFormat.PNG?raw=true)
 
 
 <a name="lic">.</a>
