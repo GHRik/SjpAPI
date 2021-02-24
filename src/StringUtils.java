@@ -66,4 +66,8 @@ public class StringUtils {
 
     }
 
+    public static final String htmlToPolishLetter ( String htmlWithBadCoding ) {
+        return htmlWithBadCoding;
+    }
+
 }

@@ -21,7 +21,7 @@ public class SjpWrapper {
         List<List<String>> wrappedCurl = new ArrayList<>();
         if (isInDictionary(curlOutput) == true) {
 
-            final String regex = "<h1[^>]*>(.+?)<\\/h1>.<p[^>]*>(.+?)<.+?(?=.*)znaczenie.+?<p[^>]*>(.+?)<\\/p>";
+            final String regex = "<h1[^>]*>(.+?)<\\/h1>.<p[^>]*>(.+?)<.+?(?=.*)href=\"\\/(.+?)\".+?znaczenie.+?<p[^>]*>(.+?)<\\/p>";
             final Pattern pattern = Pattern.compile(regex, Pattern.MULTILINE);
             final Matcher matcher = pattern.matcher(curlOutput);
 
@@ -53,6 +53,7 @@ public class SjpWrapper {
         if ( wordsFromCurlOutput.isEmpty() == true ) {
             jsonObject.put("name", "-1");
             jsonObject.put("count","-1");
+            jsonObject.put("variant","-1");
             jsonObject.put("canBeUsed", false);
             jsonObject.put("meaning", "-1");
 
@@ -65,7 +66,8 @@ public class SjpWrapper {
             jsonObject.put("count",wordsFromCurlOutput.size());
             for( int i = 0; i < wordsFromCurlOutput.size(); i++){
                 jsonObject.put("canBeUsed"+"["+i+"]",TranslateCanBeUsed(wordsFromCurlOutput.get(i).get(1)));
-                jsonObject.put("meaning"+"["+i+"]", wrappedDescription(wordsFromCurlOutput.get(i).get(2)));
+                jsonObject.put("variant"+"["+i+"]", StringUtils.htmlToPolishLetter(wordsFromCurlOutput.get(i).get(2)));
+                jsonObject.put("meaning"+"["+i+"]", wrappedDescription(wordsFromCurlOutput.get(i).get(3)));
             }
             String newWord = jsonObject.toString();
             allWrappedWord = newWord;
@@ -96,5 +98,6 @@ public class SjpWrapper {
         descritption = descritption.replaceAll("(?i)<br */?>","\n");
         return descritption;
     }
+
 
 }
