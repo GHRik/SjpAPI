@@ -116,7 +116,9 @@ public class StringUtils {
                     htmlWithGoodCoding = htmlWithBadCoding.replaceAll(key, htmlPolishChar.get(key));
                     htmlWithBadCoding = htmlWithGoodCoding;
                 }
+
             }
+        htmlWithGoodCoding = htmlWithBadCoding;
 
         return htmlWithGoodCoding;
     }
