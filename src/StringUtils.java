@@ -1,5 +1,8 @@
 package com.sjp.sjpapi;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -55,24 +58,6 @@ public class StringUtils {
         htmlEntities.put("&euro;", "\u20a0");
     }
 
-    private static HashMap<String, String> htmlPolishChar;
-
-    static {
-        htmlPolishChar = new HashMap<String, String>();
-        //ąęćóśłżźń
-        htmlPolishChar.put("%C4%87", "ć");
-        htmlPolishChar.put("%C3%B3", "ó");
-        htmlPolishChar.put("%C5%84", "ń");
-        htmlPolishChar.put("%C5%81", "ł");
-        htmlPolishChar.put("%C5%82", "ł");
-        htmlPolishChar.put("%C4%85", "ą");
-        htmlPolishChar.put("%C4%99", "ę");
-        htmlPolishChar.put("%C5%BC", "ż");
-        htmlPolishChar.put("%C5%BA", "ź");
-        htmlPolishChar.put("%C5%9B", "ś");
-
-    }
-
 
     // Function from
     // https://www.rgagnon.com/javadetails/java-0307.html
@@ -107,20 +92,9 @@ public class StringUtils {
 
     }
 
-    public static final String htmlToPolishLetter(String htmlWithBadCoding) {
+    public static final String htmlToPolishLetter(String htmlWithBadCoding) throws UnsupportedEncodingException {
 
-        String htmlWithGoodCoding = "";
-
-            for (String key : htmlPolishChar.keySet()) {
-                if (htmlWithBadCoding.contains(key)) {
-                    htmlWithGoodCoding = htmlWithBadCoding.replaceAll(key, htmlPolishChar.get(key));
-                    htmlWithBadCoding = htmlWithGoodCoding;
-                }
-
-            }
-        htmlWithGoodCoding = htmlWithBadCoding;
-
-        return htmlWithGoodCoding;
+        return URLDecoder.decode(htmlWithBadCoding, "UTF-8");
     }
 
     public static boolean hasSpecyficHTMLTags(String text){

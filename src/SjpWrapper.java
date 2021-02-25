@@ -3,6 +3,7 @@ package com.sjp.sjpapi;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -10,7 +11,7 @@ import java.util.regex.Pattern;
 
 public class SjpWrapper {
 
-    public String getWrapped (String curlOutput) throws JSONException {
+    public String getWrapped (String curlOutput) throws JSONException, UnsupportedEncodingException {
         List<List<String>> wordsFromCurlOutput = regexForInfo(curlOutput);
         return translateArrayToJSON(wordsFromCurlOutput);
 
@@ -47,7 +48,7 @@ public class SjpWrapper {
         }
     }
 
-    private String translateArrayToJSON(List<List<String>> wordsFromCurlOutput ) throws JSONException {
+    private String translateArrayToJSON(List<List<String>> wordsFromCurlOutput ) throws JSONException, UnsupportedEncodingException {
         String allWrappedWord = "";
         JSONObject jsonObject = new JSONObject();
         if ( wordsFromCurlOutput.isEmpty() == true ) {
