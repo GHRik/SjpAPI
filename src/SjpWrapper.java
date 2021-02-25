@@ -89,7 +89,7 @@ public class SjpWrapper {
 
 
     private boolean isDescriptionGoodFormat(String description) {
-        if (StringUtils.hasSpecyficHTMLTags(description) || description.contentEquals( "KOMENTARZE:")){
+        if (StringUtils.hasSpecyficHTMLTags(description) || description.contentEquals( "KOMENTARZE:") || description.contentEquals("POWIĄZANE HASŁA:")){
             return false;
         }
         else {
