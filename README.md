@@ -105,12 +105,22 @@ Output from example:
 - Name: Name of searching word
 - Count: How many meaning word have
 - canBeUsed[index]: this word as meaning[index] can be used in game like scrabble
-- viariant[index]: this field is point from which word searching word is created. For example if you searching for: "równe" , one of the variant is "równa" or "równy" [heck it out](sjp.pl/równe)
+- viariant[index]: this field is point from which word searching word is created. For example if you searching for: "równe" , one of the variant is "równa" or "równy" [check it out](https://www.sjp.pl/równe)
 - meaning[index]: one of meaning of word
+
 
 Sometimes a sjp.pl site is in ***bad format*** and it is unavailable to read "meaning" of word. [Look at this issue](https://github.com/GHRik/SjpAPI/issues/6)
 So in this case a output from "meaning[index]" field is "BAD FORMAT" , you can see in example below.
 
+For example:
+Searching for word "wypasać"
+```
+String json = SjpAPI.getWord("wypasać");
+```
+Output from example:
+```
+{"name":"wypasać","count":1,"canBeUsed[0]":true,"variant[0]":"wypasać","meaning[0]":"BAD FORMAT"}
+```
 
 <a name="examples">.</a>
 ## Examples:
