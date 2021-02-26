@@ -1,5 +1,8 @@
 package com.sjp.sjpapi;
 
+import android.text.InputFilter;
+import android.text.Spanned;
+
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
@@ -106,7 +109,21 @@ public class StringUtils {
     }
 
     public static final String deleteSpecialChar(String text){
-        text = text.replaceAll("[^\\p{Alpha}]+","");
+        text = text.replaceAll("[^\\p{IsAlphabetic}\\p{IsDigit}]", "");
         return text;
     }
+
+    public static final String deleteEmoji(String text) {
+
+        for (int index = 0; index < text.length(); index++) {
+
+            int type = Character.getType(text.charAt(index));
+
+            if (type == Character.SURROGATE) {
+                text.substring(index);
+            }
+        }
+        return text;
+    }
+
 }

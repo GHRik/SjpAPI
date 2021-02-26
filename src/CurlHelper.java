@@ -8,11 +8,13 @@ public class CurlHelper {
     private static CurlValidator validator = new CurlValidator();
     private static CurlWrapper wrapper = new CurlWrapper();
 
-    private static String readCurlFromSJP(String word) throws IOException {
-        return reader.getCurlOutput("https://sjp.pl/"+word);
-    }
 
     public static String getOutputFromCurl(String word) throws IOException {
+
+        if (word.isEmpty() == true){
+            word = "empty";
+        }
+
         String outputFromCurl = readCurlFromSJP(word);
 
         if (validator.isCurlValidate(outputFromCurl) == true) {
@@ -20,6 +22,12 @@ public class CurlHelper {
         }
         return "";
     }
+
+    private static String readCurlFromSJP(String word) throws IOException {
+        return reader.getCurlOutput("https://sjp.pl/"+word);
+    }
+
+
 
 
 
