@@ -42,28 +42,34 @@ public class CurlReader {
     }
 
 
-
-
     private String read(String https) throws IOException {
 
         String curlOutput = "";
         HttpURLConnection urlConnection = null;
         URL url = new URL(https);
 
+
         urlConnection = (HttpURLConnection) url.openConnection();
         urlConnection.setRequestMethod("GET");
-        urlConnection.connect();
+        urlConnection.setReadTimeout(500);
+        urlConnection.setDefaultUseCaches(false);
+        urlConnection.setUseCaches(false);
+        try {
+            urlConnection.connect();
+            curlOutput += urlConnection.getResponseCode();
 
-        curlOutput += urlConnection.getResponseCode();
+            BufferedReader br = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
+            StringBuilder sb = new StringBuilder();
 
-        BufferedReader br = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
-        StringBuilder sb = new StringBuilder();
-
-        String line;
-        while ((line = br.readLine()) != null) {
-            curlOutput += line + " ";
+            String line;
+            while ((line = br.readLine()) != null) {
+                curlOutput += line + " ";
+            }
+            br.close();
         }
-        br.close();
+        catch(Exception e) {
+            curlOutput = "";
+        }
 
         return curlOutput;
     }
