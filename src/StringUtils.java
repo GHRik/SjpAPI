@@ -109,7 +109,7 @@ public class StringUtils {
     }
 
     public static final String deleteSpecialChar(String text){
-        text = text.replaceAll("[^\\p{IsAlphabetic}\\p{IsDigit}]", "");
+        text = text.replaceAll("[^\\p{Alnum}\\s]]?", "");
         return text;
     }
 

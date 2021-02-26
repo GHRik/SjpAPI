@@ -11,7 +11,7 @@ public class CurlHelper {
 
     public static String getOutputFromCurl(String word) throws IOException {
 
-        if (word.isEmpty() == true){
+        if (word.trim().isEmpty() == true){
             word = "empty";
         }
 
