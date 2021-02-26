@@ -104,4 +104,9 @@ public class StringUtils {
         Matcher matcher = pattern.matcher(text);
         return matcher.find();
     }
+
+    public static final String deleteSpecialChar(String text){
+        text = text.replaceAll("[^\\p{Alpha}]+","");
+        return text;
+    }
 }

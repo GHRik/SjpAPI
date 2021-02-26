@@ -8,11 +8,11 @@ import java.util.ArrayList;
 public class SjpAPI {
 
     public String getWord(String word) throws IOException, JSONException {
-
-            String json = "";
-
-            json = SjpHelper.translateFromCurlToJSON(CurlHelper.getOutputFromCurl(word));
-            return json;
+        String json = "";
+        String wordWithoutSpecialChar = "";
+        wordWithoutSpecialChar = StringUtils.deleteSpecialChar(word);
+        json = SjpHelper.translateFromCurlToJSON(CurlHelper.getOutputFromCurl(wordWithoutSpecialChar));
+        return json;
     }
 
 
