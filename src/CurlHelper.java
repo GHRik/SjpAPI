@@ -1,10 +1,6 @@
 package com.sjp.sjpapi;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.MalformedURLException;
-import java.net.URL;
 
 public class CurlHelper {
 
@@ -20,7 +16,7 @@ public class CurlHelper {
         String outputFromCurl = readCurlFromSJP(word);
 
         if (validator.isCurlValidate(outputFromCurl) == true) {
-            return wrapper.deleteHeadFromOutput(outputFromCurl);
+            return wrapper.getBettwenH1AndCommentSection(outputFromCurl);
         }
         return "";
     }

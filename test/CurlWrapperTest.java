@@ -1,17 +1,15 @@
-package sjpAPI;
+package com.sjp;
 
 import junit.framework.TestCase;
-
-import org.junit.Assert;
 
 public class CurlWrapperTest extends TestCase {
 
     private CurlWrapper wrapper = new CurlWrapper();
 
-    public void testIsNOTHeadInOutput() {
-        String mockCurl = "<head>asdasdsadasd</head> <body>fgdfggfhtyjfhghfgd</body> asfdfhtyhhjdffsdc";
+    public void testIsBettwenH1AndCommentSection() {
+        String mockCurl = "<head>asdasdsadasd</head> <body><h1>fgdfggfhtyjfhghfgd</h1>KOMENTARZE:</body> asfdfhtyhhjdffsdc";
         mockCurl = wrapper.wrappCurl(mockCurl);
-        assertEquals(mockCurl,"fgdfggfhtyjfhghfgd");
+        assertEquals(mockCurl,"<h1>fgdfggfhtyjfhghfgd</h1>");
 
     }
 }

@@ -84,8 +84,9 @@ public class StringUtils {
 
     public static final String substringBettwen(String substringString, String openingSequence, String closingSequence) {
 
-        int startSection = substringString.indexOf(openingSequence) + openingSequence.length();
-        int finisSection = substringString.indexOf("</body>");
+        //int startSection = substringString.indexOf(openingSequence) + openingSequence.length();
+        int startSection = substringString.indexOf(openingSequence);
+        int finisSection = substringString.indexOf(closingSequence);
         substringString = substringString.substring(startSection, finisSection);
 
         return substringString;
