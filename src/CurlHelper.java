@@ -6,7 +6,6 @@ public class CurlHelper {
 
     private static CurlReader reader = new CurlReader();
     private static CurlValidator validator = new CurlValidator();
-    private static CurlWrapper wrapper = new CurlWrapper();
 
 
     public static String getOutputFromCurl(String word) throws IOException {
@@ -17,10 +16,9 @@ public class CurlHelper {
 
         String outputFromCurl = readCurlFromSJP(word);
 
-        if (validator.isCurlValidate(outputFromCurl) == true) {
-            return wrapper.getBettwenH1AndCommentSection(outputFromCurl);
+        if (validator.isCurlValidate(outputFromCurl) == false) {
+	    return "";
         }
-        return "";
     }
 
     private static String readCurlFromSJP(String word) throws IOException {
