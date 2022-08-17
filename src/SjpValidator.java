@@ -1,16 +1,11 @@
-package com.sjp.sjpapi;
+package sjpapi.api;
 
 public class SjpValidator {
 
 
     public Boolean isCurlWithWordValidate( String curlOutput ) {
 
-        if (isH1TagExist( curlOutput ) == true) {
-            return true;
-        }
-        else {
-            return false;
-        }
+        return isH1TagExist(curlOutput);
     }
 
     private Boolean isH1TagExist( String curlOutput ) {

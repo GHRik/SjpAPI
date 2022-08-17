@@ -1,21 +1,17 @@
-package com.sjp.sjpapi;
-
-import android.text.InputFilter;
-import android.text.Spanned;
+package sjpapi.api;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
-import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class StringUtils {
 
-    private static HashMap<String, String> htmlEntities;
+    private static final HashMap<String, String> htmlEntities;
 
     static {
-        htmlEntities = new HashMap<String, String>();
+        htmlEntities = new HashMap<>();
         htmlEntities.put("&lt;", "<");
         htmlEntities.put("&gt;", ">");
         htmlEntities.put("&amp;", "&");
@@ -64,7 +60,7 @@ public class StringUtils {
 
     // Function from
     // https://www.rgagnon.com/javadetails/java-0307.html
-    public static final String unescapeHTML(String source, int start) {
+    public static String unescapeHTML(String source, int start) {
         int startOfHtmlSpecialCharCombination, closeOfHtmlSpecialCharCombination;
 
         startOfHtmlSpecialCharCombination = source.indexOf("&", start);
@@ -72,12 +68,11 @@ public class StringUtils {
             closeOfHtmlSpecialCharCombination = source.indexOf(";", startOfHtmlSpecialCharCombination);
             if (closeOfHtmlSpecialCharCombination > startOfHtmlSpecialCharCombination) {
                 String entityToLookFor = source.substring(startOfHtmlSpecialCharCombination, closeOfHtmlSpecialCharCombination + 1);
-                String value = (String) htmlEntities.get(entityToLookFor);
+                String value = htmlEntities.get(entityToLookFor);
                 if (value != null) {
-                    source = new StringBuffer().append(source.substring(0, startOfHtmlSpecialCharCombination))
-                            .append(value)
-                            .append(source.substring(closeOfHtmlSpecialCharCombination + 1))
-                            .toString();
+                    source = source.substring(0, startOfHtmlSpecialCharCombination) +
+                            value +
+                            source.substring(closeOfHtmlSpecialCharCombination + 1);
                     return unescapeHTML(source, startOfHtmlSpecialCharCombination + 1); // recursive call
                 }
             }
@@ -85,18 +80,7 @@ public class StringUtils {
         return source;
     }
 
-    public static final String substringBettwen(String substringString, String openingSequence, String closingSequence) {
-
-        //int startSection = substringString.indexOf(openingSequence) + openingSequence.length();
-        int startSection = substringString.indexOf(openingSequence);
-        int finisSection = substringString.indexOf(closingSequence);
-        substringString = substringString.substring(startSection, finisSection);
-
-        return substringString;
-
-    }
-
-    public static final String htmlToPolishLetter(String htmlWithBadCoding) throws UnsupportedEncodingException {
+    public static String htmlToPolishLetter(String htmlWithBadCoding) throws UnsupportedEncodingException {
 
         return URLDecoder.decode(htmlWithBadCoding, "UTF-8");
     }
@@ -108,22 +92,8 @@ public class StringUtils {
         return matcher.find();
     }
 
-    public static final String deleteSpecialChar(String text){
+    public static String deleteSpecialChar(String text){
         text = text.replaceAll("[^\\p{Alnum}\\s]]?", "");
         return text;
     }
-
-    public static final String deleteEmoji(String text) {
-
-        for (int index = 0; index < text.length(); index++) {
-
-            int type = Character.getType(text.charAt(index));
-
-            if (type == Character.SURROGATE) {
-                text.substring(index);
-            }
-        }
-        return text;
-    }
-
 }

@@ -1,33 +1,20 @@
-package com.sjp.sjpapi;
+package sjpapi.api;
 
 public class CurlValidator {
 
     public Boolean isCurlValidate( String curlOutput ) {
 
-        if (isResponseOK(curlOutput) && isBodySection(curlOutput)) {
-            return true;
-        }
-        else {
-            return false;
-        }
+        return isResponseOK(curlOutput) && isBodySection(curlOutput);
     }
 
     private Boolean isResponseOK( String curlOutput ) {
 
-        if (curlOutput.startsWith("200")) {
-            return true;
-        }
-        else {
-            return false;
-        }
+        return curlOutput.startsWith("200");
     }
 
     private Boolean isBodySection( String curlOutput ) {
         if (curlOutput.contains("<body>") && curlOutput.contains("</body>")){
             return true;
-        }
-        else {
-
         }
         return false;
     }

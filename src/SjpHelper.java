@@ -1,16 +1,13 @@
-package com.sjp.sjpapi;
+package sjpapi.api;
 
 import org.json.JSONException;
 
 import java.io.UnsupportedEncodingException;
-import java.util.ArrayList;
-
-
 
 public class SjpHelper {
 
-    private static SjpValidator validator = new SjpValidator();
-    private static SjpWrapper wrapper = new SjpWrapper();
+    private static final SjpValidator validator = new SjpValidator();
+    private static final SjpWrapper wrapper = new SjpWrapper();
 
     public static String translateFromCurlToJSON(String curl ) throws JSONException, UnsupportedEncodingException {
 

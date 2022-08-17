@@ -1,37 +1,31 @@
-package com.sjp.sjpapi;
-
-import android.content.res.Configuration;
+package sjpapi.api;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
-import java.net.ProtocolException;
 import java.net.URL;
 
 public class CurlReader {
 
     private String readed = "";
 
-    public String getCurlOutput(String https) throws IOException {
+    public String getCurlOutput(String https) {
 
 
-        Thread thread = new Thread(new Runnable() {
-                        @Override
-            public void run() {
-                try  {
-                    try {
-                        readed = read(https);
-                    } catch (MalformedURLException e) {
-                        e.printStackTrace();
-                    }
+        Thread thread = new Thread(() -> {
+try  {
+    try {
+        readed = read(https);
+    } catch (MalformedURLException e) {
+        e.printStackTrace();
+    }
 
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
+} catch (Exception e) {
+    e.printStackTrace();
+}
+});
         thread.start();
         try {
             thread.join();
@@ -44,8 +38,8 @@ public class CurlReader {
 
     private String read(String https) throws IOException {
 
-        String curlOutput = "";
-        HttpURLConnection urlConnection = null;
+        StringBuilder curlOutput = new StringBuilder();
+        HttpURLConnection urlConnection;
         URL url = new URL(https);
 
 
@@ -56,22 +50,21 @@ public class CurlReader {
         urlConnection.setUseCaches(false);
         try {
             urlConnection.connect();
-            curlOutput += urlConnection.getResponseCode();
+            curlOutput.append(urlConnection.getResponseCode());
 
             BufferedReader br = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
-            StringBuilder sb = new StringBuilder();
 
             String line;
             while ((line = br.readLine()) != null) {
-                curlOutput += line + " ";
+                curlOutput.append(line).append(" ");
             }
             br.close();
         }
         catch(Exception e) {
-            curlOutput = "";
+            curlOutput = new StringBuilder();
         }
 
-        return curlOutput;
+        return curlOutput.toString();
     }
 
 
