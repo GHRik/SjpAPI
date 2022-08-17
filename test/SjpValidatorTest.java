@@ -1,4 +1,4 @@
-package sjpAPI;
+package sjpapi.api;
 
 import junit.framework.TestCase;
 
