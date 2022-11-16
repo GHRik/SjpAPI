@@ -9,7 +9,7 @@ public class CurlValidator {
 
     private Boolean isResponseOK( String curlOutput ) {
 
-        return curlOutput.startsWith("200");
+        return curlOutput.startsWith("200") || curlOutput.startsWith("404");
     }
 
     private Boolean isBodySection( String curlOutput ) {

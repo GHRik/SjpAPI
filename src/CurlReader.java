@@ -11,21 +11,24 @@ public class CurlReader {
 
     private String readed = "";
 
-    public String getCurlOutput(String https) {
+    public String getCurlOutput(final String https) {
 
 
-        Thread thread = new Thread(() -> {
-try  {
-    try {
-        readed = read(https);
-    } catch (MalformedURLException e) {
-        e.printStackTrace();
-    }
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    try {
+                        readed = CurlReader.this.read(https);
+                    } catch (MalformedURLException e) {
+                        e.printStackTrace();
+                    }
 
-} catch (Exception e) {
-    e.printStackTrace();
-}
-});
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
         thread.start();
         try {
             thread.join();
@@ -52,13 +55,23 @@ try  {
             urlConnection.connect();
             curlOutput.append(urlConnection.getResponseCode());
 
-            BufferedReader br = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
+            BufferedReader br;
+            String response = curlOutput.toString();
+            if ("404".equals(response))
+            {
+                br = new BufferedReader(new InputStreamReader(urlConnection.getErrorStream()));
+            }
+            else
+            {
+                br = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
+            }
 
             String line;
             while ((line = br.readLine()) != null) {
                 curlOutput.append(line).append(" ");
             }
             br.close();
+            urlConnection.disconnect();
         }
         catch(Exception e) {
             curlOutput = new StringBuilder();
