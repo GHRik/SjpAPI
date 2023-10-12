@@ -6,6 +6,10 @@ import java.io.IOException;
 
 public class SjpAPI {
 
+    private SjpAPI() {
+    }
+
+    @SuppressWarnings("unused")
     public static String getWord(String word) throws IOException, JSONException {
         String json;
         String wordWithoutSpecialChar;
