@@ -1,12 +1,16 @@
 package sjpapi.api;
 
-import junit.framework.TestCase;
+import org.junit.jupiter.api.Test;
 
-public class CurlValidatorTest extends TestCase {
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+class CurlValidatorTest {
 
     private CurlValidator validator = new CurlValidator();
 
-    public void testIsHTTPNotFound() {
+    @Test
+    void testIsHTTPNotFound() {
         String mockCurl = "404 Not Found\n" +
                 "Server: nginx\n" +
                 "Date: Thu, 18 Feb 2021 08:56:46 GMT\n" +
@@ -16,7 +20,8 @@ public class CurlValidatorTest extends TestCase {
         assertFalse(validator.isCurlValidate(mockCurl));
     }
 
-    public void testIsHTTP200() {
+    @Test
+    void testIsHTTP200() {
         String mockCurl = "200 OK\n" +
                 "Server: nginx\n" +
                 "Date: Thu, 18 Feb 2021 08:56:46 GMT\n" +
@@ -26,7 +31,8 @@ public class CurlValidatorTest extends TestCase {
         assertTrue(validator.isCurlValidate(mockCurl));
     }
 
-    public void testIsHTTP200WithoutBody() {
+    @Test
+    void testIsHTTP200WithoutBody() {
         String mockCurl = "200 OK\n" +
                 "Server: nginx\n" +
                 "Date: Thu, 18 Feb 2021 08:56:46 GMT\n" +
@@ -34,5 +40,4 @@ public class CurlValidatorTest extends TestCase {
                 "Transfer-Encoding: chunked";
         assertFalse(validator.isCurlValidate(mockCurl));
     }
-
 }

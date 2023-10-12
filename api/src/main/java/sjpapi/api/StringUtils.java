@@ -57,11 +57,14 @@ public class StringUtils {
         htmlEntities.put("&euro;", "\u20a0");
     }
 
+    private StringUtils() {
+    }
 
     // Function from
     // https://www.rgagnon.com/javadetails/java-0307.html
     public static String unescapeHTML(String source, int start) {
-        int startOfHtmlSpecialCharCombination, closeOfHtmlSpecialCharCombination;
+        int startOfHtmlSpecialCharCombination;
+        int closeOfHtmlSpecialCharCombination;
 
         startOfHtmlSpecialCharCombination = source.indexOf("&", start);
         if (startOfHtmlSpecialCharCombination > -1) {
@@ -86,7 +89,7 @@ public class StringUtils {
     }
 
     public static boolean hasSpecyficHTMLTags(String text){
-        String HTML_PATTERN = "<a[^>]*>.+?<\\/a>|<span[^>]*.+?<\\/span>|<p[^>]*.+?<\\/p>";
+        final String HTML_PATTERN = "<a[^>]*>.+?<\\/a>|<span[^>]*.+?<\\/span>|<p[^>]*.+?<\\/p>";
         Pattern pattern = Pattern.compile(HTML_PATTERN);
         Matcher matcher = pattern.matcher(text);
         return matcher.find();
