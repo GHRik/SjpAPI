@@ -1,16 +1,16 @@
 package sjpapi.api;
 
 import junit.framework.TestCase;
+import sjpapi.api.CurlReader;
 
 import java.io.IOException;
-import java.net.MalformedURLException;
 
 public class CurlReaderTest extends TestCase {
 
     private CurlReader reader = new CurlReader();
 
-    //If this test fails it is means sjp.pl changed something
-    // in the structure of the page, it is possible that
+    //If this test fails, it means sjp.pl changed something
+    // in the structure of the page; it is possible that
     // SjpAPI has stopped working.
     // If it still works, you can ignore this test.
     public void testIsSJPHaveSameSite() throws IOException {

@@ -13,9 +13,6 @@ public class CurlValidator {
     }
 
     private Boolean isBodySection( String curlOutput ) {
-        if (curlOutput.contains("<body>") && curlOutput.contains("</body>")){
-            return true;
-        }
-        return false;
+        return curlOutput.contains("<body>") && curlOutput.contains("</body>");
     }
 }

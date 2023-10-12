@@ -9,6 +9,9 @@ public class SjpHelper {
     private static final SjpValidator validator = new SjpValidator();
     private static final SjpWrapper wrapper = new SjpWrapper();
 
+    private SjpHelper() {
+    }
+
     public static String translateFromCurlToJSON(String curl ) throws JSONException, UnsupportedEncodingException {
 
         String json = "EMPTY";

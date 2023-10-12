@@ -20,7 +20,7 @@ public class SjpWrapper {
     private List<List<String>> regexForInfo (String curlOutput) {
 
         List<List<String>> wrappedCurl = new ArrayList<>();
-        if (isInDictionary(curlOutput)) {
+        if (Boolean.TRUE.equals(isInDictionary(curlOutput))) {
 
             final String regex = "<h1[^>]*>(.+?)<\\/h1>.<p[^>]*>(.+?)<.+?(?=.*)href=\"\\/(.+?)\".+?znaczenie.+?<p[^>]*>(.+?)<\\/p>";
             final Pattern pattern = Pattern.compile(regex, Pattern.MULTILINE);
@@ -59,7 +59,7 @@ public class SjpWrapper {
             jsonObject.put("name",wordsFromCurlOutput.get(0).get(0));
             jsonObject.put("count",wordsFromCurlOutput.size());
             for( int i = 0; i < wordsFromCurlOutput.size(); i++){
-                jsonObject.put("canBeUsed"+"["+i+"]",TranslateCanBeUsed(wordsFromCurlOutput.get(i).get(1)));
+                jsonObject.put("canBeUsed"+"["+i+"]", translateCanBeUsed(wordsFromCurlOutput.get(i).get(1)));
                 jsonObject.put("variant"+"["+i+"]", StringUtils.htmlToPolishLetter(wordsFromCurlOutput.get(i).get(2)));
                 jsonObject.put("meaning"+"["+i+"]", wrappedDescription(wordsFromCurlOutput.get(i).get(3)));
             }
@@ -68,7 +68,7 @@ public class SjpWrapper {
         return allWrappedWord;
     }
 
-    private Boolean TranslateCanBeUsed(String oneParamOfWordFromCurl){
+    private Boolean translateCanBeUsed(String oneParamOfWordFromCurl){
         return !oneParamOfWordFromCurl.startsWith("niedopuszczalne");
 
     }
