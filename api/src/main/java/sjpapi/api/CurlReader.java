@@ -6,27 +6,25 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.logging.Logger;
+
+import static java.util.logging.Level.SEVERE;
 
 public class CurlReader {
 
-    private String readed = "";
+    private String readResult = "";
+    private static final Logger logger = Logger.getLogger(CurlReader.class.getName());
 
     public String getCurlOutput(final String https) {
 
-
-        Thread thread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    try {
-                        readed = CurlReader.this.read(https);
-                    } catch (MalformedURLException e) {
-                        e.printStackTrace();
-                    }
-
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+        Thread thread = new Thread(() -> {
+            try {
+                readResult = read(https);
+            } catch (MalformedURLException e) {
+                logger.log(SEVERE, "MalformedURLException");
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         });
         thread.start();
@@ -34,8 +32,9 @@ public class CurlReader {
             thread.join();
         } catch (InterruptedException e) {
             e.printStackTrace();
+            Thread.currentThread().interrupt();
         }
-        return readed;
+        return readResult;
     }
 
 
@@ -57,12 +56,9 @@ public class CurlReader {
 
             BufferedReader br;
             String response = curlOutput.toString();
-            if ("404".equals(response))
-            {
+            if ("404".equals(response)) {
                 br = new BufferedReader(new InputStreamReader(urlConnection.getErrorStream()));
-            }
-            else
-            {
+            } else {
                 br = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
             }
 
@@ -72,13 +68,10 @@ public class CurlReader {
             }
             br.close();
             urlConnection.disconnect();
-        }
-        catch(Exception e) {
+        } catch (Exception e) {
             curlOutput = new StringBuilder();
         }
 
         return curlOutput.toString();
     }
-
-
 }
