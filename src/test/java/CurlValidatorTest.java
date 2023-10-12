@@ -1,6 +1,7 @@
 package sjpapi.api;
 
 import junit.framework.TestCase;
+import sjpapi.api.CurlValidator;
 
 public class CurlValidatorTest extends TestCase {
 

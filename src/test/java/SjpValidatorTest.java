@@ -1,10 +1,11 @@
 package sjpapi.api;
 
 import junit.framework.TestCase;
+import sjpapi.api.SjpValidator;
 
 public class SjpValidatorTest extends TestCase {
 
-    private SjpValidator validator = new SjpValidator();
+    private final SjpValidator validator = new SjpValidator();
 
 
     public void testIsCurlHaveH1Tag() {

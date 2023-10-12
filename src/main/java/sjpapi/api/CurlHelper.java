@@ -4,9 +4,11 @@ import java.io.IOException;
 
 public class CurlHelper {
 
-    private final static CurlReader reader = new CurlReader();
-    private final static CurlValidator validator = new CurlValidator();
+    private static final CurlReader reader = new CurlReader();
+    private static final CurlValidator validator = new CurlValidator();
 
+    private CurlHelper() {
+    }
 
     public static String getOutputFromCurl(String word) throws IOException {
 
@@ -25,10 +27,4 @@ public class CurlHelper {
     private static String readCurlFromSJP(String word) throws IOException {
         return reader.getCurlOutput("https://sjp.pl/"+word);
     }
-
-
-
-
-
-
 }
